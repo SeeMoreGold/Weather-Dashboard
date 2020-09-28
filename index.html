@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Signika:wght@400;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+    <title>Weather Dashboard</title>
+</head>
+<body>
+    <div class = "header">
+        <h2>Weather Dashboard</h2>
+    </div>
+    <div class="container">
+        <div class="row">
+          <div class="col-md-4" id = "searchCol">
+              <h5>Search for a City:</h5>
+              <input type="search" value = "Orlando">
+              <button id = "searchBtn"><i class="fa fa-search"></i></button>
+              <hr>
+          </div>
+          <div class="col-md-8" id = "weatherCol">
+            <div class="row">
+                <div class="col-md-12 card" id = "currentWeather">
+                    <div class="card-body">
+                        <h3 id = "nowCityName">Orlando (9/28/2020)</h3>
+                        <p id = "nowTemp">Temperature:</p>
+                        <p id = "nowHumidity">Humidity:</p>
+                        <p id = "nowWind">Wind Speed:</p>
+                        <p id = "nowUV">UV Index:</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 card" id = "fiveDay">
+                    <div class="card-body">
+                        <h4 id = "nowCityName">5-Day Forecast:</h4>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+</body>
+</html>
