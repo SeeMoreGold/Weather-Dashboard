@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" -->
+        <!-- integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Signika:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="assets/style.css">
@@ -64,93 +65,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script type="text/javascript">
-
-        // Button on click event to search for city   
-        $("#searchBtn").on("click", function (event) {
-            event.preventDefault();
-            var citySearched = $("#userInput").val();
-
-            // variables for api key and concatonated query url
-
-            var apiKey = "0e14f6cd8a34cf2c0af1f393473c489b";
-            var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + citySearched + "&appid=" + apiKey;
-
-            // Ajax call to Open Weather API
-            $.ajax({
-                url: queryURL,
-                method: "GET"
-            })
-                .then(function (response) {
-                    console.log(response);
-
-                    // Transfer data content to HTML
-                    $("#nowCityName").html("<h3>" + response.name + " (" + moment().format('L') + ")" + "</h3>");
-                    $("#nowHumidity").text("Humidity (%): " + response.main.humidity);
-                    $("#nowWind").text("Wind Speed (mph): " + response.wind.speed);
-
-                    // Convert the temp to fahrenheit
-                    var tempF = (response.main.temp - 273.15) * 1.80 + 32;
-
-                    // add temp content to html
-                    $("#nowTemp").text("Temperature (°F): " + tempF.toFixed(2));
-                    // Call to run function "saveCity"
-                    saveCity();
-                    // Function to prepend city to searched city div
-                    function saveCity() {
-                        for (var i = 0; i < localStorage.length; i++) {
-                            localStorage.setItem("InputCities", response.name);
-                            var cities = localStorage.getItem(localStorage.key(i));
-                            $('#userCities').prepend('<li><a href="#">' + cities + '</a></li>');
-                        }
-                    }
-                    // Variables for getting the longetude and latitude
-                    var cityLat = response.coord.lat;
-                    var cityLon = response.coord.lon;
-                    // New url for getting the uv index
-                    var uvQueryURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + cityLat + "&lon=" + cityLon + "&appid=" + apiKey;
-                    // Ajax call to get the uv index
-                    $.ajax({
-                        url: uvQueryURL,
-                        method: "GET"
-                    })
-                        .then(function (response) {
-                            $("#nowUV").text("UV Index: " + response.value);
-                        });
-                    // New url for getting the 5-day forecast
-                    var forcastQueryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + citySearched + "&cnt=5&appid=" + apiKey;
-                    // Ajax call for 5-day forecast
-                    $.ajax({
-                        url: forcastQueryURL,
-                        method: "GET"
-                    })
-                        .then(function (response) {
-                            console.log(response);
-                            for (var i = 0; i < response.list.length; i++) {
-                                var forecastDiv = $("<div class='card bg-primary'></div>");
-                                var p = $("<p>").text(moment().add(i + 1, 'days').format('L'));
-                                var futureTemp = $("<p>").text("Temp (°F)" + (foreTemp * 1).toFixed(2));
-                                var humid = $("<p>").text("Humidity (%): " + response.list[i].main.humidity);
-                                var foreTemp = (response.list[i].main.temp - 273.15) * 1.80 + 32;
-                                var iconCode = response.list[i].weather.icon;
-                                var iconImage = $("<img>");
-                                iconImage.attr("src", "http://openweathermap.org/img/wn/" + iconCode + "@2x.png");
-                                
-                                console.log(iconCode);
-                                forecastDiv.append(p);
-                                forecastDiv.append(futureTemp);
-                                forecastDiv.append(iconImage);
-                                forecastDiv.append(humid);
-                                $("#forecastCards").append(forecastDiv);
-                            }
-                            
-                        });
-                });
-        });
-
-
-
-    </script>
+    <script src="./assets/script.js"></script>
 </body>
 
 </html>
