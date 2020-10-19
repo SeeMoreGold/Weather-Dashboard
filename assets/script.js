@@ -58,15 +58,19 @@
             })
                 .then(function (response) {
                     console.log(response);
+                    $("#forecastCards").empty();
                     for (var i = 0; i < response.list.length; i++) {
                         var forecastDiv = $("<div class='card bg-primary'></div>");
                         var p = $("<p>").text(moment().add(i + 1, 'days').format('L'));
-                        var futureTemp = $("<p>").text("Temp (°F)" + (foreTemp * 1).toFixed(2));
+                        
+                        console.log("Future Temp: "+futureTemp);
                         var humid = $("<p>").text("Humidity (%): " + response.list[i].main.humidity);
                         var foreTemp = (response.list[i].main.temp - 273.15) * 1.80 + 32;
-                        var iconCode = response.list[i].weather.icon;
+                        var futureTemp = $("<p>").text("Temp (°F)" + (foreTemp * 1).toFixed(2));
+                        console.log("ForeTemp: "+foreTemp);
+                        var iconCode = response.list[i].weather[0].icon;
                         var iconImage = $("<img>");
-                        iconImage.attr("src", "http://openweathermap.org/img/wn/" + iconCode + "@2x.png");
+                        iconImage.attr("src", "http://openweathermap.org/img/w/" + iconCode + ".png");
                         
                         console.log(iconCode);
                         forecastDiv.append(p);
