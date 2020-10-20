@@ -70,7 +70,7 @@
                         console.log("ForeTemp: "+foreTemp);
                         var iconCode = response.list[i].weather[0].icon;
                         var iconImage = $("<img>");
-                        iconImage.attr("src", "http://openweathermap.org/img/w/" + iconCode + ".png");
+                        iconImage.attr("src", "https://openweathermap.org/img/w/" + iconCode + ".png");
                         
                         console.log(iconCode);
                         forecastDiv.append(p);
